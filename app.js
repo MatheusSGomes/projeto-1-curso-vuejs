@@ -17,12 +17,22 @@ new Vue({
             this.monsterLife = 100;
         },
         attack(especial) {
-            console.log(especial, this.getRandom(5, 10));
+            this.hurt(7, 12, especial);
+        },
+        hurt(min, max, especial) {
+            const plus = especial ? 5 : 0;
+            const hurt = this.getRandom(min + plus, max + plus);
+            this.playerLife = Math.max(this.playerLife - hurt, 0);
         },
         getRandom(min, max) {
             const value = Math.random() * (max - min) + min;
             return Math.round(value);
         },
     },
-    watch: {}
+    watch: {
+        // sempre que houver mudança na variável/método hasResult(). Ela será monitorada.
+        hasResult(value) {
+            if (value) this.running = false;
+        }
+    }
 });
