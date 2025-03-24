@@ -46,7 +46,7 @@
             </template>
             <div v-else @click="startGame" class="btn new-game" >Iniciar Jogo</div>
         </div>
-        <div class="panel logs">4</div>
+        <div v-if="logs.length" class="panel logs"></div>
     </div>
 
     <script src="app.js"></script>
